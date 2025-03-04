@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NDIS Reimbursement Form</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="form-container">
+    <div class="header">
+      <h1>PRO PLAN MANAGERS</h1>
+      <h2>NDIS Reimbursement Form</h2>
+    </div>
+
+    <div class="form-subtitle">
+      <p>This Reimbursement Form is made for the purpose of claiming supports under the Participant's National Disability Insurance Scheme (NDIS) plan.</p>
+    </div>
+
+    <!-- Participant Details -->
+    <fieldset>
+      <legend>Participant Details</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="participantFirstName">First Name:</label>
+          <input type="text" id="participantFirstName" name="participantFirstName" required>
+        </div>
+        <div class="form-group">
+          <label for="participantMiddleName">Middle Name:</label>
+          <input type="text" id="participantMiddleName" name="participantMiddleName">
+        </div>
+        <div class="form-group">
+          <label for="participantLastName">Last Name:</label>
+          <input type="text" id="participantLastName" name="participantLastName" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+        <div class="form-group">
+          <label for="ndisNumber">NDIS Number:</label>
+          <input type="text" id="ndisNumber" name="ndisNumber" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="planStartDate">Plan Start Date:</label>
+          <input type="date" id="planStartDate" name="planStartDate" required>
+        </div>
+        <div class="form-group">
+          <label for="planEndDate">Plan End Date:</label>
+          <input type="date" id="planEndDate" name="planEndDate" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Payments for NDIS Plan-managed Supports -->
+    <fieldset>
+      <legend>Schedule of Supports</legend>
+      <table id="paymentsTable" class="support-table">
+        <thead>
+          <tr>
+            <th>Support Item (Category)</th>
+            <th>Description of Supports</th>
+            <th>Invoice Date</th>
+            <th>Quantity</th>
+            <th>Amount Paid (GST Inclusive)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" name="supportItem"></td>
+            <td><input type="text" name="supportDescription"></td>
+            <td><input type="date" name="invoiceDate"></td>
+            <td><input type="number" name="quantity"></td>
+            <td><input type="number" step="0.01" name="amountPaid"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" id="addRow" class="blue-button">Add More</button>
+      <p class="total-amount">Total Amount: $<span id="totalAmount">0.00</span></p>
+    </fieldset>
+
+    <!-- Participant Representative Contact Details -->
+    <fieldset>
+      <legend>Participant Representative Contact Details</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="repName">Name:</label>
+          <input type="text" id="repName" name="repName">
+        </div>
+        <div class="form-group">
+          <label for="repMobile">Mobile/Phone:</label>
+          <input type="text" id="repMobile" name="repMobile">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="repEmail">Email:</label>
+          <input type="email" id="repEmail" name="repEmail">
+        </div>
+        <div class="form-group">
+          <label for="repAddress">Address:</label>
+          <input type="text" id="repAddress" name="repAddress">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="altContact">Alternative Contact Person:</label>
+          <input type="text" id="altContact" name="altContact">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Invoice Visibility -->
+    <fieldset>
+      <legend>Invoice Visibility</legend>
+      <div class="checkbox-group">
+        <label>
+          <input type="radio" name="invoiceVisibility" value="autoApprove" checked>
+          I want the plan manager to auto-approve all the invoices.
+        </label>
+      </div>
+      <div class="checkbox-group">
+        <label>
+          <input type="radio" name="invoiceVisibility" value="seekApproval">
+          I want the plan manager to seek approval before processing each invoice. All the invoices must be sent to the following email address for approval:
+        </label>
+        <input type="email" id="approvalEmail" name="approvalEmail" class="indent-input">
+      </div>
+      <div class="checkbox-group">
+        <label>
+          <input type="radio" name="invoiceVisibility" value="serviceAgreement">
+          I want the plan manager to obtain a copy of the service agreement from the provider and approve the invoice based on the agreement.
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Statement -->
+    <fieldset>
+      <legend>Client Declaration</legend>
+      <p>I acknowledge receipt of information from Pro Plan Managers about the following:</p>
+      <ul>
+        <li>Scope of service delivery and the role and responsibilities of the Plan Manager</li>
+        <li>Preferred method of invoicing and/or how receipts for reimbursement are exchanged</li>
+        <li>Plan Management fee including initial setup costs and monthly fee for ongoing financial administration</li>
+        <li>The process of dispute resolution, providing feedback or making a complaint</li>
+      </ul>
+      
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" name="confirmation" required>
+          I agree to the terms and conditions of the agreement and understand the contract.
+        </label>
+      </div>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" name="confirmation" required>
+          I understand, for me to receive the best possible service, relevant information about me may be forwarded to the agency(s) listed, that may also provide these services:
+        </label>
+        <ul class="indent-list">
+          <li>Allied Health Services</li>
+          <li>NDIS</li>
+          <li>Service Providers</li>
+        </ul>
+      </div>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" name="confirmation" required>
+          I have not previously claimed these purchases.
+        </label>
+      </div>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" name="confirmation" required>
+          All invoices are attached, and copies are kept for a minimum of five years.
+        </label>
+      </div>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" name="confirmation" required>
+          I understand that the information provided is accurate and complete, and that the NDIS reserves the right to audit any claims.
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Signature -->
+    <fieldset>
+      <legend>Signature</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="signatureName">Full Name:</label>
+          <input type="text" id="signatureName" name="signatureName" required>
+        </div>
+        <div class="form-group">
+          <label for="signatureRelationship">Relationship to Participant:</label>
+          <input type="text" id="signatureRelationship" name="signatureRelationship" required>
+        </div>
+        <div class="form-group">
+          <label for="signatureDate">Date:</label>
+          <input type="date" id="signatureDate" name="signatureDate" required>
+        </div>
+      </div>
+      <div class="signature-area">
+        <label for="signature">Signature:</label>
+        <canvas id="signatureCanvas" width="300" height="100"></canvas>
+        <button type="button" id="clearSignature" class="secondary-button">Clear Signature</button>
+      </div>
+      <div class="provider-signature">
+        <div class="signature-line">
+          <span>Signature of Provider:</span> ___________________________
+        </div>
+        <div class="signature-line">
+          <span>Date:</span> ___________________________
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Bank Account Details -->
+    <fieldset>
+      <legend>Bank Account Details (EFT)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="accountName">Account Name:</label>
+          <input type="text" id="accountName" name="accountName" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="bsb">BSB:</label>
+          <input type="text" id="bsb" name="bsb" required>
+        </div>
+        <div class="form-group">
+          <label for="accountNumber">Account Number:</label>
+          <input type="text" id="accountNumber" name="accountNumber" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Email Submission
+    <fieldset>
+      <legend>Form Submission</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="userEmail">Your Email Address:</label>
+          <input type="email" id="userEmail" name="userEmail" required>
+          <p class="field-hint">We'll send the completed form to this email address.</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="attachInvoices">Attach Invoices:</label>
+          <input type="file" id="attachInvoices" name="attachInvoices" multiple>
+          <p class="field-hint">Please attach all relevant invoices (optional).</p>
+        </div>
+      </div>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="sendCopy" name="sendCopy" checked>
+          Also send a copy to Pro Plan Managers at invoices@proplanmanagers.net.au
+        </label>
+      </div>
+    </fieldset> -->
+
+    <!-- Terms and Conditions -->
+    <fieldset>
+      <legend>Terms and Conditions</legend>
+      <h3>Changes to this Service Agreement</h3>
+      <p>If changes to the supports or their delivery are required, the Parties agree to discuss and review this Service Agreement. The Parties agree that any changes to this Service Agreement will be in writing, signed, and dated by the Parties.</p>
+      
+      <h3>Ending this Service Agreement</h3>
+      <p>Should either Party wishes to end this Service Agreement they must give 28 days notice or as mutually agreed between both parties.</p>
+      <p>If either Party seriously breaches this Service Agreement the requirement of notice will be waived.</p>
+      
+      <h3>Feedback, Complaints, and Disputes</h3>
+      <p>If the Participant wishes to provide feedback, the Participant can talk to Muhammad Aadil Khan on 0499 516 550.</p>
+      <p>If the Participant is not happy with the provision of supports and wishes to make a complaint, the Participant can talk to Fraz Rana on 0481 594 176, or in person by visiting our office Monday to Friday, 09:00 am – 05:00 pm at Suite 1, Unit 30, 22-30 Wallace Avenue, Point Cook, VIC 3030.</p>
+      <p>If the Participant is not satisfied or does not want to talk to this person, the Participant can contact the National Disability Insurance Scheme by calling 1800 800 110, visiting one of their offices in person, or visiting ndis.gov.au for further information.</p>
+      
+      <h3>Participant Consent</h3>
+      <p>Pro Plan Managers will work closely with other agencies to coordinate the best support for you. This means your informed consent for the sharing of information will be sought and respected in all situations unless:</p>
+      <ul>
+        <li>We are obliged by law to disclose your information regardless of consent or otherwise</li>
+        <li>It is unreasonable or impracticable to gain consent or consent has been refused; and</li>
+        <li>The disclosure is reasonably necessary to prevent or lessen a serious threat to the life, health or safety of a person or group of people.</li>
+      </ul>
+    </fieldset>
+
+    <!-- Submit Buttons -->
+    <div class="form-actions">
+      <button type="button" id="generatePdf" class="blue-button">Download PDF</button>
+      <button type="button" id="submitForm" class="primary-button">Submit Form</button>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-header">
+        <h2>Form Submitted Successfully</h2>
+      </div>
+      <div class="modal-body">
+        <p>Your NDIS Reimbursement Form has been submitted successfully.</p>
+        <p>A copy of the form has been sent to your email: <span id="confirmationEmail"></span></p>
+        <p>Thank you for using Pro Plan Managers.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="blue-button" id="closeModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Processing your submission...</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.26/jspdf.plugin.autotable.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
